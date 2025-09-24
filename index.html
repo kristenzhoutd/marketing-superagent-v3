@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing SuperAgent</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Main SuperAgent Interface -->
+            <div class="superagent-interface">
+                <!-- Left Side: Conversational Interface -->
+                <div class="conversation-side">
+                    <!-- SuperAgent Introduction -->
+                    <div class="superagent-intro">
+                        <div class="agent-avatar">
+                            <div class="avatar-diamond">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <div class="intro-content">
+                            <h1 class="agent-title">Marketing SuperAgent</h1>
+                            <p class="agent-subtitle">Your AI co-pilot for campaign creation and optimization</p>
+                            <div class="agent-capabilities">
+                                <span class="capability-tag">Campaign Briefs</span>
+                                <span class="capability-tag">Creative Generation</span>
+                                <span class="capability-tag">Audience Targeting</span>
+                                <span class="capability-tag">Performance Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Interface -->
+                    <div class="chat-interface">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Welcome Message -->
+                            <div class="message agent-message">
+                                <div class="message-avatar">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-text">
+                                        Hi! I'm your Marketing SuperAgent. I can help you create campaign briefs, generate creative assets, design customer journeys, and optimize performance. What would you like to work on today?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Suggested Starters -->
+                        <div class="starter-suggestions" id="starter-suggestions">
+                            <div class="suggestions-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Try asking me about:</span>
+                            </div>
+                            <div class="starter-cards">
+                                <div class="starter-card" data-prompt="Create a campaign brief for our Black Friday sale">
+                                    <div class="starter-icon">📝</div>
+                                    <div class="starter-text">"Create a campaign brief for our Black Friday sale"</div>
+                                </div>
+                                <div class="starter-card" data-prompt="Generate 3 Instagram ads for holiday promotion">
+                                    <div class="starter-icon">🎨</div>
+                                    <div class="starter-text">"Generate 3 Instagram ads for holiday promotion"</div>
+                                </div>
+                                <div class="starter-card" data-prompt="Build a 2-week email campaign journey for cart abandoners">
+                                    <div class="starter-icon">🗺️</div>
+                                    <div class="starter-text">"Build a 2-week email campaign journey for cart abandoners"</div>
+                                </div>
+                                <div class="starter-card" data-prompt="How is my Black Friday campaign performing? Should I change budgets?">
+                                    <div class="starter-icon">📊</div>
+                                    <div class="starter-text">"How is my Black Friday campaign performing?"</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="chat-input-container">
+                            <div class="input-wrapper">
+                                <input type="text"
+                                       id="chat-input"
+                                       placeholder="Tell me what you'd like to create or optimize..."
+                                       autocomplete="off">
+                                <button id="send-button" class="send-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Agent Panel -->
+                <div class="agent-panel-side">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Specialist Agents</span>
+                        </div>
+                        <div class="agents-status">
+                            <span class="status-text">8 agents ready</span>
+                            <div class="status-indicator active"></div>
+                        </div>
+                    </div>
+
+                    <div class="agents-grid">
+                        <div class="agent-card" data-agent="research">
+                            <div class="agent-header">
+                                <div class="agent-icon research">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Deep Research</div>
+                                    <div class="agent-description">Market trends & competitor insights</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="performance">
+                            <div class="agent-header">
+                                <div class="agent-icon performance">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Performance</div>
+                                    <div class="agent-description">Analytics & optimization</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="creative">
+                            <div class="agent-header">
+                                <div class="agent-icon creative">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Creative</div>
+                                    <div class="agent-description">Asset generation & testing</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="audience">
+                            <div class="agent-header">
+                                <div class="agent-icon audience">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Audience</div>
+                                    <div class="agent-description">Segmentation & targeting</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="journey">
+                            <div class="agent-header">
+                                <div class="agent-icon journey">
+                                    <i class="fas fa-route"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Journey</div>
+                                    <div class="agent-description">Channel orchestration</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="paid-media">
+                            <div class="agent-header">
+                                <div class="agent-icon paid-media">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Paid Media</div>
+                                    <div class="agent-description">Budget allocation & activation</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="historical">
+                            <div class="agent-header">
+                                <div class="agent-icon historical">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">Historical</div>
+                                    <div class="agent-description">Past campaign learnings</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+
+                        <div class="agent-card" data-agent="decisioning">
+                            <div class="agent-header">
+                                <div class="agent-icon decisioning">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="agent-info">
+                                    <div class="agent-name">AI Decisioning</div>
+                                    <div class="agent-description">Continuous optimization</div>
+                                </div>
+                            </div>
+                            <div class="agent-status ready">Ready</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <div class="actions-title">Quick Actions</div>
+                        <div class="action-buttons">
+                            <button class="action-btn" data-action="brief">
+                                <i class="fas fa-file-alt"></i>
+                                Campaign Brief
+                            </button>
+                            <button class="action-btn" data-action="creative">
+                                <i class="fas fa-image"></i>
+                                Generate Creative
+                            </button>
+                            <button class="action-btn" data-action="journey">
+                                <i class="fas fa-route"></i>
+                                Design Journey
+                            </button>
+                            <button class="action-btn" data-action="optimize">
+                                <i class="fas fa-rocket"></i>
+                                Optimize Campaign
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Agent Panel (Expandable) -->
+        <div class="agent-panel" id="agent-panel">
+            <div class="agent-panel-header">
+                <div class="panel-title">
+                    <i class="fas fa-network-wired"></i>
+                    Active Agents
+                </div>
+                <button class="panel-toggle" id="panel-toggle">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="agent-panel-content">
+                <div class="agent-status-list">
+                    <div class="agent-status-item">
+                        <div class="agent-info">
+                            <div class="agent-name">Deep Research Agent</div>
+                            <div class="agent-task">Ready to analyze market trends</div>
+                        </div>
+                        <div class="agent-indicator ready"></div>
+                    </div>
+                    <div class="agent-status-item">
+                        <div class="agent-info">
+                            <div class="agent-name">Creative Agent</div>
+                            <div class="agent-task">Ready to generate assets</div>
+                        </div>
+                        <div class="agent-indicator ready"></div>
+                    </div>
+                    <div class="agent-status-item">
+                        <div class="agent-info">
+                            <div class="agent-name">Performance Agent</div>
+                            <div class="agent-task">Ready to analyze data</div>
+                        </div>
+                        <div class="agent-indicator ready"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
