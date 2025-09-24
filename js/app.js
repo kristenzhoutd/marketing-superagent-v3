@@ -155,11 +155,16 @@ class MarketingSuperAgentV3 {
             'agent'
         );
 
-        // Activate relevant agents
+        // Show agent progress display
         setTimeout(() => {
+            this.showAgentProgress(messageType);
             this.activateAgents(messageType);
+        }, 1000);
+
+        // Generate final response
+        setTimeout(() => {
             this.generateResponse(message, messageType);
-        }, 1500);
+        }, 5000);
     }
 
     analyzeMessage(message) {
@@ -254,6 +259,158 @@ class MarketingSuperAgentV3 {
                 statusIndicator.classList.remove('active');
             }
         }
+    }
+
+    showAgentProgress(messageType) {
+        const agentConfigs = {
+            brief: ['Deep Research', 'Performance', 'Audience'],
+            creative: ['Creative', 'Deep Research'],
+            journey: ['Journey', 'Audience'],
+            performance: ['Performance', 'Deep Research'],
+            audience: ['Audience', 'Deep Research'],
+            'paid-media': ['Paid Media', 'Performance'],
+            general: ['Deep Research']
+        };
+
+        const activeAgents = agentConfigs[messageType] || agentConfigs.general;
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Create progress display container
+        const progressDiv = document.createElement('div');
+        progressDiv.className = 'agent-progress-display';
+        progressDiv.id = `progress-${Date.now()}`;
+
+        const agentDetails = {
+            'Deep Research': { icon: 'fas fa-search', color: '#8b5cf6', task: 'Analyzing market trends and competitor data' },
+            'Creative': { icon: 'fas fa-palette', color: '#ec4899', task: 'Generating creative concepts and assets' },
+            'Journey': { icon: 'fas fa-route', color: '#f59e0b', task: 'Mapping customer touchpoints and flows' },
+            'Performance': { icon: 'fas fa-chart-bar', color: '#3b82f6', task: 'Reviewing campaign performance data' },
+            'Audience': { icon: 'fas fa-users', color: '#10b981', task: 'Identifying target segments' },
+            'Paid Media': { icon: 'fas fa-dollar-sign', color: '#14b8a6', task: 'Optimizing budget allocation' },
+            'Historical': { icon: 'fas fa-history', color: '#6366f1', task: 'Analyzing past campaign learnings' },
+            'AI Decisioning': { icon: 'fas fa-brain', color: '#ef4444', task: 'Processing strategic recommendations' }
+        };
+
+        let progressHTML = `
+            <div class="progress-header">
+                <i class="fas fa-cog"></i>
+                <span>Activating ${activeAgents.length} specialist agents</span>
+            </div>
+            <div class="agent-progress-list">
+        `;
+
+        activeAgents.forEach((agentName, index) => {
+            const agent = agentDetails[agentName];
+            progressHTML += `
+                <div class="agent-progress-item" id="agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}">
+                    <div class="agent-progress-icon" style="background: ${agent.color}">
+                        <i class="${agent.icon}"></i>
+                    </div>
+                    <div class="agent-progress-content">
+                        <div class="agent-progress-name">${agentName} Agent</div>
+                        <div class="agent-progress-task">${agent.task}</div>
+                    </div>
+                    <div class="agent-status-indicator pending">
+                        <span>•</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        progressHTML += '</div>';
+        progressDiv.innerHTML = progressHTML;
+
+        chatMessages.appendChild(progressDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simulate agent progress
+        this.simulateAgentProgress(activeAgents, progressDiv.id);
+    }
+
+    simulateAgentProgress(agents, progressId) {
+        const progressDiv = document.getElementById(progressId);
+        if (!progressDiv) return;
+
+        agents.forEach((agentName, index) => {
+            const itemId = `agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${progressId.split('-')[1]}`;
+
+            // Start working
+            setTimeout(() => {
+                const item = document.getElementById(itemId);
+                if (item) {
+                    item.classList.add('working');
+                    const indicator = item.querySelector('.agent-status-indicator');
+                    indicator.className = 'agent-status-indicator working';
+                    indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                }
+            }, (index + 1) * 500);
+
+            // Complete work
+            setTimeout(() => {
+                const item = document.getElementById(itemId);
+                if (item) {
+                    item.classList.remove('working');
+                    item.classList.add('completed');
+                    const indicator = item.querySelector('.agent-status-indicator');
+                    indicator.className = 'agent-status-indicator completed';
+                    indicator.innerHTML = '<i class="fas fa-check"></i>';
+
+                    const taskDiv = item.querySelector('.agent-progress-task');
+                    taskDiv.textContent = 'Analysis completed successfully';
+                }
+            }, (index + 1) * 1000 + 2000);
+        });
+
+        // Store thought process for later viewing
+        this.storeThoughtProcess(agents, progressId);
+    }
+
+    storeThoughtProcess(agents, progressId) {
+        const thoughtProcesses = {
+            'Deep Research': [
+                'Analyzed current market trends in the target demographic',
+                'Reviewed competitor campaigns and identified gaps',
+                'Gathered industry benchmarks and performance data',
+                'Synthesized insights for strategic recommendations'
+            ],
+            'Creative': [
+                'Reviewed brand guidelines and creative assets',
+                'Generated multiple creative concepts and variations',
+                'Evaluated concepts for brand alignment and impact',
+                'Selected top performing creative directions'
+            ],
+            'Journey': [
+                'Mapped current customer touchpoints and interactions',
+                'Identified optimization opportunities in the funnel',
+                'Designed improved customer flow and timing',
+                'Validated journey against conversion benchmarks'
+            ],
+            'Performance': [
+                'Analyzed historical campaign performance data',
+                'Identified top and underperforming segments',
+                'Calculated ROI and attribution metrics',
+                'Developed optimization recommendations'
+            ],
+            'Audience': [
+                'Segmented target audiences by behavior and demographics',
+                'Created detailed audience personas and profiles',
+                'Analyzed audience overlap and exclusion opportunities',
+                'Validated segments against business objectives'
+            ],
+            'Paid Media': [
+                'Evaluated current budget allocation across channels',
+                'Analyzed channel performance and cost efficiency',
+                'Identified reallocation opportunities for better ROI',
+                'Calculated projected impact of budget changes'
+            ]
+        };
+
+        // Store for later retrieval
+        this.thoughtProcessData = this.thoughtProcessData || {};
+        this.thoughtProcessData[progressId] = agents.map(agentName => ({
+            agent: agentName,
+            thoughts: thoughtProcesses[agentName] || ['Processed request and generated insights']
+        }));
     }
 
     generateResponse(message, messageType) {
@@ -396,8 +553,67 @@ What would you like to work on next?`
 
         setTimeout(() => {
             this.addMessage(response.content, 'agent', response.agent);
+            this.addThoughtProcessOption();
             this.showSuggestedFollowUps(messageType);
         }, 2000);
+    }
+
+    addThoughtProcessOption() {
+        const chatMessages = document.getElementById('chat-messages');
+        const thoughtContainer = document.createElement('div');
+        thoughtContainer.className = 'thought-process-container';
+
+        const thoughtId = `thoughts-${Date.now()}`;
+        thoughtContainer.innerHTML = `
+            <button class="view-thoughts-btn" onclick="app.toggleThoughtProcess('${thoughtId}')">
+                <i class="fas fa-brain"></i>
+                <span>View Agent Thought Process</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="thought-process-details" id="${thoughtId}">
+                ${this.generateThoughtProcessHTML()}
+            </div>
+        `;
+
+        chatMessages.appendChild(thoughtContainer);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    generateThoughtProcessHTML() {
+        if (!this.thoughtProcessData) return '<p>No thought process data available.</p>';
+
+        const latestProgressId = Object.keys(this.thoughtProcessData).pop();
+        const thoughtData = this.thoughtProcessData[latestProgressId];
+
+        let html = '';
+        thoughtData.forEach(agentData => {
+            html += `
+                <div class="thought-item">
+                    <div class="thought-agent">${agentData.agent} Agent</div>
+                    <div class="thought-content">
+                        <ul>
+                            ${agentData.thoughts.map(thought => `<li>${thought}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        });
+
+        return html;
+    }
+
+    toggleThoughtProcess(thoughtId) {
+        const thoughtDetails = document.getElementById(thoughtId);
+        const button = thoughtDetails.previousElementSibling;
+        const chevron = button.querySelector('.fa-chevron-down, .fa-chevron-up');
+
+        if (thoughtDetails.classList.contains('expanded')) {
+            thoughtDetails.classList.remove('expanded');
+            chevron.className = 'fas fa-chevron-down';
+        } else {
+            thoughtDetails.classList.add('expanded');
+            chevron.className = 'fas fa-chevron-up';
+        }
     }
 
     showSuggestedFollowUps(messageType) {
