@@ -807,35 +807,109 @@ What would you like to work on next?`
                         <div class="section-icon" style="background: #ec4899;">
                             <i class="fas fa-palette"></i>
                         </div>
-                        <div class="section-title">Creative Concepts Generated</div>
+                        <div class="section-title">Sample Creative Assets Generated</div>
                     </div>
 
-                    <div class="status-grid">
-                        <div class="status-item">
-                            <div class="status-icon" style="background: #22c55e;">
-                                <i class="fas fa-star"></i>
+                    <div class="asset-gallery">
+                        <div class="asset-preview" onclick="app.viewAssetDetails('holiday-magic')">
+                            <div class="asset-image">
+                                <div class="asset-mockup holiday-magic">
+                                    <div class="mockup-header">🎄 Holiday Magic</div>
+                                    <div class="mockup-subtext">Transform your holidays with exclusive deals that sparkle with savings</div>
+                                    <div class="mockup-cta">Shop Now - 40% Off</div>
+                                </div>
+                                <div class="asset-overlay">Carousel</div>
                             </div>
-                            <div class="status-content">
-                                <div class="status-title">Concept A: "Holiday Magic"</div>
-                                <div class="status-desc">Predicted CTR: 3.2% | Engagement Score: 92</div>
+                            <div class="asset-details">
+                                <div class="asset-title">Concept A: "Holiday Magic"</div>
+                                <div class="asset-metrics">
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">3.2%</div>
+                                        <div class="asset-metric-label">Pred. CTR</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">92</div>
+                                        <div class="asset-metric-label">Eng. Score</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">15.2%</div>
+                                        <div class="asset-metric-label">Conv. Rate</div>
+                                    </div>
+                                </div>
+                                <div class="asset-tags">
+                                    <span class="asset-tag format">Carousel</span>
+                                    <span class="asset-tag platform">Instagram</span>
+                                    <span class="asset-tag platform">Facebook</span>
+                                    <span class="asset-tag size">1080x1080</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="status-item">
-                            <div class="status-icon" style="background: #3b82f6;">
-                                <i class="fas fa-trophy"></i>
+
+                        <div class="asset-preview" onclick="app.viewAssetDetails('limited-time')">
+                            <div class="asset-image">
+                                <div class="asset-mockup limited-time">
+                                    <div class="mockup-header">⏰ Limited Time</div>
+                                    <div class="mockup-subtext">Don't miss out! Exclusive offers ending soon. Act fast before it's gone!</div>
+                                    <div class="mockup-cta">Claim Offer - 24hrs Left</div>
+                                </div>
+                                <div class="asset-overlay">Video</div>
                             </div>
-                            <div class="status-content">
-                                <div class="status-title">Concept B: "Limited Time"</div>
-                                <div class="status-desc">Predicted CTR: 2.8% | Engagement Score: 87</div>
+                            <div class="asset-details">
+                                <div class="asset-title">Concept B: "Limited Time"</div>
+                                <div class="asset-metrics">
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">2.8%</div>
+                                        <div class="asset-metric-label">Pred. CTR</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">87</div>
+                                        <div class="asset-metric-label">Eng. Score</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">12.8%</div>
+                                        <div class="asset-metric-label">Conv. Rate</div>
+                                    </div>
+                                </div>
+                                <div class="asset-tags">
+                                    <span class="asset-tag format">Video</span>
+                                    <span class="asset-tag platform">TikTok</span>
+                                    <span class="asset-tag platform">Instagram Stories</span>
+                                    <span class="asset-tag size">9:16 Vertical</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="status-item">
-                            <div class="status-icon" style="background: #f59e0b;">
-                                <i class="fas fa-heart"></i>
+
+                        <div class="asset-preview" onclick="app.viewAssetDetails('customer-love')">
+                            <div class="asset-image">
+                                <div class="asset-mockup customer-love">
+                                    <div class="mockup-header">💝 Customer Love</div>
+                                    <div class="mockup-subtext">Join thousands of happy customers who trust us for quality and value</div>
+                                    <div class="mockup-cta">See Reviews & Shop</div>
+                                </div>
+                                <div class="asset-overlay">Collection</div>
                             </div>
-                            <div class="status-content">
-                                <div class="status-title">Concept C: "Customer Love"</div>
-                                <div class="status-desc">Predicted CTR: 2.5% | Engagement Score: 84</div>
+                            <div class="asset-details">
+                                <div class="asset-title">Concept C: "Customer Love"</div>
+                                <div class="asset-metrics">
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">2.5%</div>
+                                        <div class="asset-metric-label">Pred. CTR</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">84</div>
+                                        <div class="asset-metric-label">Eng. Score</div>
+                                    </div>
+                                    <div class="asset-metric">
+                                        <div class="asset-metric-value">11.5%</div>
+                                        <div class="asset-metric-label">Conv. Rate</div>
+                                    </div>
+                                </div>
+                                <div class="asset-tags">
+                                    <span class="asset-tag format">Collection</span>
+                                    <span class="asset-tag platform">Facebook</span>
+                                    <span class="asset-tag platform">Google Ads</span>
+                                    <span class="asset-tag size">Multiple</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -843,24 +917,63 @@ What would you like to work on next?`
 
                 <div class="content-section">
                     <div class="section-header">
-                        <div class="section-icon" style="background: #8b5cf6;">
+                        <div class="section-icon" style="background: #3b82f6;">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="section-title">Performance Predictions by Format</div>
+                        <div class="section-title">Concept Performance Comparison</div>
                     </div>
 
-                    <div class="chart-bars">
-                        <div class="chart-bar" style="height: 85%; background: #3b82f6;">
-                            <div class="chart-bar-label">Carousel</div>
+                    <div class="performance-chart">
+                        <div class="chart-title">Predicted Click-Through Rate by Concept</div>
+                        <div class="performance-bars">
+                            <div class="perf-bar concept-a" style="height: 85%;">
+                                <span>3.2%</span>
+                                <div class="perf-bar-label">Holiday Magic</div>
+                            </div>
+                            <div class="perf-bar concept-b" style="height: 70%;">
+                                <span>2.8%</span>
+                                <div class="perf-bar-label">Limited Time</div>
+                            </div>
+                            <div class="perf-bar concept-c" style="height: 65%;">
+                                <span>2.5%</span>
+                                <div class="perf-bar-label">Customer Love</div>
+                            </div>
                         </div>
-                        <div class="chart-bar" style="height: 70%; background: #10b981;">
-                            <div class="chart-bar-label">Video</div>
+                    </div>
+
+                    <div class="format-showcase">
+                        <div class="format-example">
+                            <div class="format-icon" style="background: #22c55e;">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <div class="format-name">Carousel Ads</div>
+                            <div class="format-specs">
+                                1080x1080px<br>
+                                2-10 cards<br>
+                                Best for product showcase
+                            </div>
                         </div>
-                        <div class="chart-bar" style="height: 60%; background: #f59e0b;">
-                            <div class="chart-bar-label">Single Image</div>
+                        <div class="format-example">
+                            <div class="format-icon" style="background: #ec4899;">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="format-name">Video Ads</div>
+                            <div class="format-specs">
+                                9:16 vertical<br>
+                                15-30 seconds<br>
+                                High engagement format
+                            </div>
                         </div>
-                        <div class="chart-bar" style="height: 45%; background: #ec4899;">
-                            <div class="chart-bar-label">Collection</div>
+                        <div class="format-example">
+                            <div class="format-icon" style="background: #f59e0b;">
+                                <i class="fas fa-th-large"></i>
+                            </div>
+                            <div class="format-name">Collection Ads</div>
+                            <div class="format-specs">
+                                Multiple sizes<br>
+                                Product catalog<br>
+                                Shopping focused
+                            </div>
                         </div>
                     </div>
 
@@ -1451,6 +1564,146 @@ What would you like to work on next?`
 
     openJourneyDesigner() {
         this.showToolActivation('journey-designer', 'Initializing customer journey mapping...');
+    }
+
+    viewAssetDetails(assetId) {
+        const assetDetails = {
+            'holiday-magic': {
+                title: 'Holiday Magic Concept',
+                description: 'Festive holiday-themed creative focusing on seasonal emotion and gift-giving',
+                copy: {
+                    headline: '🎄 Transform Your Holidays with Magic',
+                    subtext: 'Discover exclusive deals that sparkle with savings this holiday season',
+                    cta: 'Shop Now - 40% Off Everything'
+                },
+                performance: {
+                    ctr: '3.2%',
+                    engagement: '92',
+                    conversion: '15.2%',
+                    sentiment: 'Positive (94%)'
+                },
+                formats: ['Carousel (1080x1080)', 'Story (1080x1920)', 'Feed Post (1200x628)'],
+                platforms: ['Instagram', 'Facebook', 'Pinterest'],
+                targeting: 'Millennials interested in home decor, families with children'
+            },
+            'limited-time': {
+                title: 'Limited Time Urgency',
+                description: 'Time-sensitive messaging creating urgency and fear of missing out',
+                copy: {
+                    headline: '⏰ Only 24 Hours Left!',
+                    subtext: 'Don\'t miss out on exclusive offers ending soon. Act fast!',
+                    cta: 'Claim Offer Before It\'s Gone'
+                },
+                performance: {
+                    ctr: '2.8%',
+                    engagement: '87',
+                    conversion: '12.8%',
+                    sentiment: 'Urgent (91%)'
+                },
+                formats: ['Video (9:16)', 'Story Ad (1080x1920)', 'Reel (1080x1920)'],
+                platforms: ['TikTok', 'Instagram Stories', 'Snapchat'],
+                targeting: 'Gen Z and Millennials, deal-seekers, impulse buyers'
+            },
+            'customer-love': {
+                title: 'Customer Love & Trust',
+                description: 'Social proof and customer testimonial-focused messaging',
+                copy: {
+                    headline: '💝 Loved by 50,000+ Customers',
+                    subtext: 'Join thousands who trust us for quality, value, and service',
+                    cta: 'See Reviews & Shop Now'
+                },
+                performance: {
+                    ctr: '2.5%',
+                    engagement: '84',
+                    conversion: '11.5%',
+                    sentiment: 'Trustworthy (96%)'
+                },
+                formats: ['Collection Ad', 'Catalog Showcase', 'Product Grid'],
+                platforms: ['Facebook', 'Google Ads', 'Amazon DSP'],
+                targeting: 'Previous customers, lookalike audiences, review readers'
+            }
+        };
+
+        const asset = assetDetails[assetId];
+        if (!asset) return;
+
+        this.addMessage(`
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #ec4899;">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="section-title">${asset.title} - Detailed View</div>
+                    </div>
+
+                    <p><strong>Concept:</strong> ${asset.description}</p>
+
+                    <div style="background: var(--content-bg); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Creative Copy:</h4>
+                        <p><strong>Headline:</strong> ${asset.copy.headline}</p>
+                        <p><strong>Subtext:</strong> ${asset.copy.subtext}</p>
+                        <p><strong>CTA:</strong> ${asset.copy.cta}</p>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">${asset.performance.ctr}</div>
+                            <div class="metric-label">Predicted CTR</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">${asset.performance.engagement}</div>
+                            <div class="metric-label">Engagement Score</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">${asset.performance.conversion}</div>
+                            <div class="metric-label">Conversion Rate</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">${asset.performance.sentiment}</div>
+                            <div class="metric-label">Sentiment</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Available Formats:</h4>
+                            <ul style="margin-left: 1rem;">
+                                ${asset.formats.map(format => `<li>${format}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Recommended Platforms:</h4>
+                            <ul style="margin-left: 1rem;">
+                                ${asset.platforms.map(platform => `<li>${platform}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--content-bg); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Target Audience:</h4>
+                        <p>${asset.targeting}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.downloadAsset('${assetId}')">
+                    <i class="fas fa-download"></i> Download Assets
+                </button>
+                <button class="btn btn-secondary" onclick="app.scheduleAsset('${assetId}')">
+                    <i class="fas fa-calendar"></i> Schedule Campaign
+                </button>
+            </div>
+        `, 'agent', 'Creative Asset Manager');
+    }
+
+    downloadAsset(assetId) {
+        this.addMessage(`📦 Preparing download package for ${assetId} concept... Assets will include all formats, sizes, and platform-specific variations. Download link will be available in your dashboard.`, 'agent');
+    }
+
+    scheduleAsset(assetId) {
+        this.addMessage(`📅 Opening campaign scheduler for ${assetId} concept... You can set launch dates, budget allocation, and A/B testing parameters in the campaign manager.`, 'agent');
     }
 }
 

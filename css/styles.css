@@ -1561,6 +1561,291 @@ body {
     margin-top: 0.25rem;
 }
 
+/* Creative Asset Previews */
+.asset-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.asset-preview {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.asset-preview:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-blue);
+}
+
+.asset-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.asset-mockup {
+    width: 90%;
+    height: 90%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+}
+
+.asset-mockup.holiday-magic {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 50%, #7f1d1d 100%);
+}
+
+.asset-mockup.limited-time {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+}
+
+.asset-mockup.customer-love {
+    background: linear-gradient(135deg, #ec4899 0%, #be185d 50%, #9d174d 100%);
+}
+
+.mockup-header {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mockup-subtext {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.mockup-cta {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin-top: auto;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.asset-overlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.asset-details {
+    padding: 1rem;
+}
+
+.asset-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.asset-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.asset-metric {
+    text-align: center;
+}
+
+.asset-metric-value {
+    font-weight: 600;
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+.asset-metric-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.asset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.asset-tag {
+    background: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.asset-tag.format {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.asset-tag.platform {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: var(--agent-active);
+    color: var(--agent-active);
+}
+
+.asset-tag.size {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: #f59e0b;
+    color: #d97706;
+}
+
+/* Asset Format Examples */
+.format-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.format-example {
+    background: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.format-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 auto 0.75rem;
+}
+
+.format-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.format-specs {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Creative Performance Chart */
+.performance-chart {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.chart-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.performance-bars {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    height: 150px;
+    margin: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.perf-bar {
+    background: var(--accent-blue);
+    border-radius: 4px 4px 0 0;
+    min-width: 40px;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding-bottom: 0.5rem;
+}
+
+.perf-bar:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+.perf-bar-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.perf-bar.concept-a { background: linear-gradient(to top, #22c55e, #16a34a); }
+.perf-bar.concept-b { background: linear-gradient(to top, #3b82f6, #2563eb); }
+.perf-bar.concept-c { background: linear-gradient(to top, #f59e0b, #d97706); }
+
+/* Responsive Creative Content */
+@media (max-width: 768px) {
+    .asset-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .format-showcase {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .performance-bars {
+        height: 120px;
+    }
+
+    .perf-bar {
+        min-width: 30px;
+        font-size: 0.7rem;
+    }
+}
+
 /* Responsive Rich Content */
 @media (max-width: 768px) {
     .metrics-grid {
