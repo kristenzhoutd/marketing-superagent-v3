@@ -417,122 +417,27 @@ class MarketingSuperAgentV3 {
         const responses = {
             brief: {
                 agent: 'Campaign Brief Generator',
-                content: `I've activated our specialist agents to create a comprehensive campaign brief. The Deep Research Agent is analyzing market trends, the Performance Agent is reviewing historical data, and the Audience Agent is identifying target segments.
-
-Based on your request, I'll generate a detailed brief including:
-• Campaign objectives and strategy
-• Target audience segments
-• Channel recommendations
-• Creative direction
-• Budget allocation
-• Success metrics
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showCampaignBrief()">
-        <i class="fas fa-file-alt"></i> View Campaign Brief
-    </button>
-    <button class="btn btn-secondary" onclick="app.refineWithAI()">
-        <i class="fas fa-magic"></i> Refine with AI
-    </button>
-</div>`
+                content: this.generateRichContent('brief')
             },
             creative: {
                 agent: 'Creative Generator',
-                content: `The Creative Agent is now generating multiple asset variants for your campaign. I'm creating different concepts that will resonate with your target audience while maintaining brand consistency.
-
-What I'm creating:
-• Multiple creative concepts
-• A/B testing variants
-• Brand-compliant designs
-• Performance predictions
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showCreativeAssets()">
-        <i class="fas fa-images"></i> View Creative Assets
-    </button>
-    <button class="btn btn-secondary" onclick="app.generateMoreVariants()">
-        <i class="fas fa-plus"></i> Generate More Variants
-    </button>
-</div>`
+                content: this.generateRichContent('creative')
             },
             journey: {
                 agent: 'Journey Designer',
-                content: `The Journey Agent is mapping your customer touchpoints and designing an optimized flow. I'm analyzing the best sequence and timing for maximum engagement and conversion.
-
-Your journey will include:
-• Entry point optimization
-• Email sequences
-• SMS follow-ups
-• Retargeting touchpoints
-• Conversion optimization
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showJourneyMap()">
-        <i class="fas fa-route"></i> View Journey Map
-    </button>
-    <button class="btn btn-secondary" onclick="app.optimizeJourney()">
-        <i class="fas fa-cogs"></i> Optimize Journey
-    </button>
-</div>`
+                content: this.generateRichContent('journey')
             },
             performance: {
                 agent: 'Performance Analyst',
-                content: `The Performance Agent is analyzing your campaign data and identifying optimization opportunities. I'm reviewing metrics across all channels to provide actionable insights.
-
-Performance insights:
-• Current ROAS: 2.3x (above benchmark)
-• Top performing channels identified
-• Underperforming segments flagged
-• Budget reallocation recommendations
-• A/B test results analyzed
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showPerformanceDashboard()">
-        <i class="fas fa-chart-line"></i> View Performance Dashboard
-    </button>
-    <button class="btn btn-secondary" onclick="app.applyOptimizations()">
-        <i class="fas fa-rocket"></i> Apply Optimizations
-    </button>
-</div>`
+                content: this.generateRichContent('performance')
             },
             audience: {
                 agent: 'Audience Specialist',
-                content: `The Audience Agent has identified your highest-value customer segments and analyzed their behavior patterns. I'm creating detailed audience profiles for precise targeting.
-
-Audience insights:
-• 4 high-value segments identified
-• Behavioral patterns analyzed
-• Look-alike audiences created
-• Cross-platform targeting setup
-• Exclusion lists optimized
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showAudienceInsights()">
-        <i class="fas fa-users"></i> View Audience Insights
-    </button>
-    <button class="btn btn-secondary" onclick="app.createLookalikes()">
-        <i class="fas fa-copy"></i> Create Lookalike Audiences
-    </button>
-</div>`
+                content: this.generateRichContent('audience')
             },
             'paid-media': {
                 agent: 'Paid Media Optimizer',
-                content: `The Paid Media Agent is optimizing your budget allocation across platforms. I'm analyzing performance data to recommend the best distribution for maximum ROI.
-
-Budget optimization:
-• Google Ads: $30K (40%) - Strong search performance
-• Meta: $25K (33%) - High engagement rates
-• TikTok: $15K (20%) - Growing younger demographic
-• Other: $5K (7%) - Testing new channels
-
-<div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-    <button class="btn btn-primary" onclick="app.showBudgetPlan()">
-        <i class="fas fa-dollar-sign"></i> View Budget Plan
-    </button>
-    <button class="btn btn-secondary" onclick="app.reallocateBudget()">
-        <i class="fas fa-exchange-alt"></i> Reallocate Budget
-    </button>
-</div>`
+                content: this.generateRichContent('paid-media')
             },
             general: {
                 agent: 'SuperAgent',
@@ -742,6 +647,522 @@ What would you like to work on next?`
 
         const prompt = actionPrompts[action] || `Help me with ${action}`;
         this.handleUserMessage(prompt);
+    }
+
+    generateRichContent(agentType) {
+        const contentGenerators = {
+            brief: () => this.generateBriefContent(),
+            creative: () => this.generateCreativeContent(),
+            journey: () => this.generateJourneyContent(),
+            performance: () => this.generatePerformanceContent(),
+            audience: () => this.generateAudienceContent(),
+            'paid-media': () => this.generatePaidMediaContent()
+        };
+
+        return contentGenerators[agentType] ? contentGenerators[agentType]() : 'Analysis complete.';
+    }
+
+    generateBriefContent() {
+        return `
+            <p>I've activated our specialist agents to create a comprehensive campaign brief with data-driven insights and strategic recommendations.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #3b82f6;">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="section-title">Campaign Objectives & KPIs</div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">$100K</div>
+                            <div class="metric-label">Total Budget</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">2.8x</div>
+                            <div class="metric-label">Target ROAS</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">45 Days</div>
+                            <div class="metric-label">Campaign Duration</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">125K</div>
+                            <div class="metric-label">Target Reach</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #10b981;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="section-title">Target Audience Breakdown</div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Primary: Millennials (25-40)</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill blue" style="width: 65%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Secondary: Gen Z (18-28)</span>
+                            <span>25%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill purple" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Tertiary: Gen X (35-50)</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill orange" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #8b5cf6;">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="section-title">Channel Strategy & Budget Allocation</div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Channel</th>
+                                <th>Budget</th>
+                                <th>Share</th>
+                                <th>Expected ROAS</th>
+                                <th>Primary Goal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Google Ads</td>
+                                <td>$40,000</td>
+                                <td>40%</td>
+                                <td>3.2x</td>
+                                <td>Conversions</td>
+                            </tr>
+                            <tr>
+                                <td>Meta (FB/IG)</td>
+                                <td>$35,000</td>
+                                <td>35%</td>
+                                <td>2.8x</td>
+                                <td>Awareness</td>
+                            </tr>
+                            <tr>
+                                <td>TikTok</td>
+                                <td>$15,000</td>
+                                <td>15%</td>
+                                <td>2.4x</td>
+                                <td>Engagement</td>
+                            </tr>
+                            <tr>
+                                <td>LinkedIn</td>
+                                <td>$10,000</td>
+                                <td>10%</td>
+                                <td>2.6x</td>
+                                <td>B2B Leads</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showCampaignBrief()">
+                    <i class="fas fa-file-alt"></i> View Full Brief
+                </button>
+                <button class="btn btn-secondary" onclick="app.refineWithAI()">
+                    <i class="fas fa-magic"></i> Refine Strategy
+                </button>
+            </div>
+        `;
+    }
+
+    generateCreativeContent() {
+        return `
+            <p>The Creative Agent has generated multiple high-performing asset variants with A/B testing recommendations and performance predictions.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #ec4899;">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="section-title">Creative Concepts Generated</div>
+                    </div>
+
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #22c55e;">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">Concept A: "Holiday Magic"</div>
+                                <div class="status-desc">Predicted CTR: 3.2% | Engagement Score: 92</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #3b82f6;">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">Concept B: "Limited Time"</div>
+                                <div class="status-desc">Predicted CTR: 2.8% | Engagement Score: 87</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #f59e0b;">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">Concept C: "Customer Love"</div>
+                                <div class="status-desc">Predicted CTR: 2.5% | Engagement Score: 84</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #8b5cf6;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="section-title">Performance Predictions by Format</div>
+                    </div>
+
+                    <div class="chart-bars">
+                        <div class="chart-bar" style="height: 85%; background: #3b82f6;">
+                            <div class="chart-bar-label">Carousel</div>
+                        </div>
+                        <div class="chart-bar" style="height: 70%; background: #10b981;">
+                            <div class="chart-bar-label">Video</div>
+                        </div>
+                        <div class="chart-bar" style="height: 60%; background: #f59e0b;">
+                            <div class="chart-bar-label">Single Image</div>
+                        </div>
+                        <div class="chart-bar" style="height: 45%; background: #ec4899;">
+                            <div class="chart-bar-label">Collection</div>
+                        </div>
+                    </div>
+
+                    <div class="tag-list">
+                        <span class="tag primary">A/B Test Ready</span>
+                        <span class="tag success">Brand Compliant</span>
+                        <span class="tag success">Mobile Optimized</span>
+                        <span class="tag warning">Review Recommended</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showCreativeAssets()">
+                    <i class="fas fa-images"></i> View All Assets
+                </button>
+                <button class="btn btn-secondary" onclick="app.generateMoreVariants()">
+                    <i class="fas fa-plus"></i> Generate More
+                </button>
+            </div>
+        `;
+    }
+
+    generatePerformanceContent() {
+        return `
+            <p>The Performance Agent has analyzed your campaign data and identified key optimization opportunities across all channels.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #3b82f6;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="section-title">Current Performance Metrics</div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">2.3x</div>
+                            <div class="metric-label">Current ROAS</div>
+                            <div class="metric-change positive">↑ 15% vs target</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$125K</div>
+                            <div class="metric-label">Revenue Generated</div>
+                            <div class="metric-change positive">↑ 23% vs last month</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">3.2%</div>
+                            <div class="metric-label">Average CTR</div>
+                            <div class="metric-change positive">↑ 0.8% vs benchmark</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">12.5%</div>
+                            <div class="metric-label">Conversion Rate</div>
+                            <div class="metric-change negative">↓ 2.1% vs target</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #10b981;">
+                            <i class="fas fa-trending-up"></i>
+                        </div>
+                        <div class="section-title">Top Performing Segments</div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Segment</th>
+                                <th>ROAS</th>
+                                <th>Conv. Rate</th>
+                                <th>Spend</th>
+                                <th>Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Millennials Mobile</td>
+                                <td style="color: #22c55e; font-weight: 600;">4.2x</td>
+                                <td>18.5%</td>
+                                <td>$15,200</td>
+                                <td>Scale up 40%</td>
+                            </tr>
+                            <tr>
+                                <td>Retargeting - Cart</td>
+                                <td style="color: #22c55e; font-weight: 600;">3.8x</td>
+                                <td>15.2%</td>
+                                <td>$8,900</td>
+                                <td>Increase budget</td>
+                            </tr>
+                            <tr>
+                                <td>Lookalike - Top 1%</td>
+                                <td style="color: #f59e0b; font-weight: 600;">2.1x</td>
+                                <td>8.7%</td>
+                                <td>$12,400</td>
+                                <td>Optimize creative</td>
+                            </tr>
+                            <tr>
+                                <td>Cold Audience</td>
+                                <td style="color: #ef4444; font-weight: 600;">1.4x</td>
+                                <td>4.2%</td>
+                                <td>$18,600</td>
+                                <td>Pause & review</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showPerformanceDashboard()">
+                    <i class="fas fa-chart-line"></i> Full Dashboard
+                </button>
+                <button class="btn btn-secondary" onclick="app.applyOptimizations()">
+                    <i class="fas fa-rocket"></i> Apply Optimizations
+                </button>
+            </div>
+        `;
+    }
+
+    // Additional content generators for other agents...
+    generateAudienceContent() {
+        return `
+            <p>The Audience Agent has identified 4 high-value customer segments with detailed behavioral analysis and targeting recommendations.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #10b981;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="section-title">Audience Segments Identified</div>
+                    </div>
+
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #3b82f6;">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">VIP Customers (125K)</div>
+                                <div class="status-desc">High LTV, frequent purchasers, brand advocates</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #22c55e;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">Cart Abandoners (89K)</div>
+                                <div class="status-desc">Added to cart but didn't purchase, high intent</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #f59e0b;">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">Browsers (200K)</div>
+                                <div class="status-desc">Visited product pages, need nurturing</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-icon" style="background: #8b5cf6;">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="status-content">
+                                <div class="status-title">New Prospects (156K)</div>
+                                <div class="status-desc">Competitor customers, expansion opportunity</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showAudienceInsights()">
+                    <i class="fas fa-users"></i> Detailed Insights
+                </button>
+                <button class="btn btn-secondary" onclick="app.createLookalikes()">
+                    <i class="fas fa-copy"></i> Create Lookalikes
+                </button>
+            </div>
+        `;
+    }
+
+    generateJourneyContent() {
+        return `
+            <p>The Journey Agent has mapped your optimal customer flow with 5 touchpoints and an 8.2% predicted conversion rate.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #f59e0b;">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="section-title">Optimized Customer Journey</div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Awareness (Email + Social)</span>
+                            <span>Day 1-3</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill blue" style="width: 20%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Consideration (Retargeting)</span>
+                            <span>Day 4-7</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill purple" style="width: 40%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Intent (SMS + Push)</span>
+                            <span>Day 8-10</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill orange" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Conversion (Cart Recovery)</span>
+                            <span>Day 11-14</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill green" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showJourneyMap()">
+                    <i class="fas fa-route"></i> View Journey Map
+                </button>
+                <button class="btn btn-secondary" onclick="app.optimizeJourney()">
+                    <i class="fas fa-cogs"></i> Optimize Flow
+                </button>
+            </div>
+        `;
+    }
+
+    generatePaidMediaContent() {
+        return `
+            <p>The Paid Media Agent has optimized your $100K budget allocation with projected 2.8x ROAS improvement across all channels.</p>
+
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #14b8a6;">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="section-title">Optimized Budget Allocation</div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">$40K</div>
+                            <div class="metric-label">Google Ads (40%)</div>
+                            <div class="metric-change positive">Strong search performance</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$33K</div>
+                            <div class="metric-label">Meta (33%)</div>
+                            <div class="metric-change positive">High engagement rates</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$20K</div>
+                            <div class="metric-label">TikTok (20%)</div>
+                            <div class="metric-change positive">Growing younger demo</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">$7K</div>
+                            <div class="metric-label">Testing (7%)</div>
+                            <div class="metric-change">New channel exploration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" onclick="app.showBudgetPlan()">
+                    <i class="fas fa-dollar-sign"></i> Detailed Budget Plan
+                </button>
+                <button class="btn btn-secondary" onclick="app.reallocateBudget()">
+                    <i class="fas fa-exchange-alt"></i> Reallocate Funds
+                </button>
+            </div>
+        `;
     }
 
     // Agent panel toggle removed - now always visible in new design
