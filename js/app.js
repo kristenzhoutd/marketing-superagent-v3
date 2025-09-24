@@ -105,10 +105,25 @@ class MarketingSuperAgentV3 {
         // Agent cards
         const agentCards = document.querySelectorAll('.agent-card');
         agentCards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                // Don't trigger card click if clicking on quick action button
+                if (e.target.closest('.agent-quick-action')) {
+                    return;
+                }
                 const agent = card.dataset.agent;
                 this.handleAgentClick(agent);
             });
+        });
+
+        // Agent quick action buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.agent-quick-action')) {
+                const button = e.target.closest('.agent-quick-action');
+                const action = button.dataset.action;
+                const agentCard = button.closest('.agent-card');
+                const agent = agentCard.dataset.agent;
+                this.handleAgentQuickAction(agent, action, button);
+            }
         });
 
         // Quick action chips
@@ -232,10 +247,10 @@ class MarketingSuperAgentV3 {
         const agentConfigs = {
             brief: ['Deep Research', 'Performance', 'Audience'],
             creative: ['Creative', 'Deep Research'],
-            journey: ['Journey', 'Audience'],
+            journey: ['Journey', 'Audience', 'Deep Research'],
             performance: ['Performance', 'Deep Research'],
             audience: ['Audience', 'Deep Research'],
-            'paid-media': ['Paid Media', 'Performance'],
+            'paid-media': ['Paid Media', 'Performance', 'Deep Research'],
             general: ['Deep Research']
         };
 
@@ -301,10 +316,10 @@ class MarketingSuperAgentV3 {
         const agentConfigs = {
             brief: ['Deep Research', 'Performance', 'Audience'],
             creative: ['Creative', 'Deep Research'],
-            journey: ['Journey', 'Audience'],
+            journey: ['Journey', 'Audience', 'Deep Research'],
             performance: ['Performance', 'Deep Research'],
             audience: ['Audience', 'Deep Research'],
-            'paid-media': ['Paid Media', 'Performance'],
+            'paid-media': ['Paid Media', 'Performance', 'Deep Research'],
             general: ['Deep Research']
         };
 
@@ -393,7 +408,7 @@ class MarketingSuperAgentV3 {
                 }
             }, (index + 1) * 500);
 
-            // Complete work
+            // Complete work - ensure completion happens before results are shown
             setTimeout(() => {
                 const item = document.getElementById(itemId);
                 if (item) {
@@ -413,7 +428,7 @@ class MarketingSuperAgentV3 {
                 } else {
                     console.error(`Could not find item with ID: ${itemId}`);
                 }
-            }, (index + 1) * 1000 + 2000);
+            }, (index + 1) * 800 + 1200);
         });
 
         // Store thought process for later viewing
@@ -512,10 +527,132 @@ What would you like to work on next?`
         const response = responses[messageType] || responses.general;
 
         setTimeout(() => {
-            this.addMessage(response.content, 'agent', response.agent);
-            this.addThoughtProcessOption();
-            this.showSuggestedFollowUps(messageType);
+            // Check if Deep Research agent is active and show its results first
+            const agentConfigs = {
+                brief: ['Deep Research', 'Performance', 'Audience'],
+                creative: ['Creative', 'Deep Research'],
+                journey: ['Journey', 'Audience', 'Deep Research'],
+                performance: ['Performance', 'Deep Research'],
+                audience: ['Audience', 'Deep Research'],
+                'paid-media': ['Paid Media', 'Performance', 'Deep Research'],
+                general: ['Deep Research']
+            };
+
+            const activeAgents = agentConfigs[messageType] || agentConfigs.general;
+
+            if (activeAgents.includes('Deep Research')) {
+                this.showDeepResearchResults(messageType);
+                // Show main response after Deep Research results
+                setTimeout(() => {
+                    this.addMessage(response.content, 'agent', response.agent);
+                    this.addThoughtProcessOption();
+                    this.showSuggestedFollowUps(messageType);
+                }, 1500);
+            } else {
+                this.addMessage(response.content, 'agent', response.agent);
+                this.addThoughtProcessOption();
+                this.showSuggestedFollowUps(messageType);
+            }
         }, 2000);
+    }
+
+    showDeepResearchResults(messageType) {
+        const researchInsights = {
+            brief: {
+                title: "Market Research & Competitive Analysis",
+                insights: [
+                    "📊 **Market Size**: Target market valued at $2.3B with 12% YoY growth",
+                    "🏆 **Top Competitors**: 3 key players control 45% market share, opportunity in mid-tier segment",
+                    "📈 **Trending Channels**: TikTok engagement up 67% in target demo, LinkedIn B2B leads up 23%",
+                    "💡 **Key Insight**: Customers respond 34% better to authentic, user-generated content vs. polished ads"
+                ]
+            },
+            creative: {
+                title: "Creative Market Intelligence",
+                insights: [
+                    "🎨 **Top Performing Formats**: Video carousel ads show 2.3x higher engagement than static images",
+                    "🌈 **Color Psychology**: Blue/purple gradients increase trust scores by 28% in your industry",
+                    "📱 **Platform Trends**: Instagram Stories with polls/questions see 156% more saves",
+                    "✍️ **Copy Insights**: Headlines under 6 words perform 41% better, questions increase CTR by 19%"
+                ]
+            },
+            journey: {
+                title: "Customer Journey Research Findings",
+                insights: [
+                    "🛤️ **Path Analysis**: 73% of conversions happen after 3+ touchpoints across 14-day period",
+                    "📧 **Email Timing**: Tuesday 10AM and Thursday 2PM show highest open rates (34% above average)",
+                    "🔄 **Retargeting Windows**: 7-day windows outperform 30-day by 23% for your audience",
+                    "📞 **Touch Point Impact**: SMS reminders increase email campaign effectiveness by 67%"
+                ]
+            },
+            performance: {
+                title: "Performance Benchmarking & Analysis",
+                insights: [
+                    "📊 **Industry Benchmarks**: Your CTR of 2.8% is 15% above industry average of 2.4%",
+                    "💰 **Cost Efficiency**: CPA trending 12% below competitors, opportunity to scale spend",
+                    "🎯 **Best Performers**: Lookalike audiences from email subscribers show 3.2x ROAS",
+                    "📉 **Optimization Opportunity**: Reallocating 20% budget from Display to Video could increase ROAS by 34%"
+                ]
+            },
+            audience: {
+                title: "Audience Intelligence Report",
+                insights: [
+                    "👥 **Demographic Shifts**: Target audience 23% more likely to engage on mobile during 6-9PM",
+                    "🛍️ **Purchase Behavior**: 67% research on mobile but convert on desktop, need cross-device tracking",
+                    "💬 **Social Listening**: Brand mentioned 2,300+ times/month, 84% positive sentiment",
+                    "🔍 **Intent Signals**: Users who view pricing page 3x more likely to convert within 7 days"
+                ]
+            },
+            'paid-media': {
+                title: "Paid Media Landscape Analysis",
+                insights: [
+                    "💵 **Budget Benchmarks**: Top performers allocate 40% Google, 35% Meta, 15% TikTok, 10% testing",
+                    "📱 **Platform Performance**: TikTok CPM 23% lower than Meta for Gen Z, but 31% higher conversion time",
+                    "🎯 **Bidding Strategy**: Target CPA performing 18% better than Target ROAS for your campaign type",
+                    "⚡ **Scaling Insights**: 3x daily budget increases sustainable if ROAS stays above 2.5x"
+                ]
+            },
+            general: {
+                title: "Market Intelligence Summary",
+                insights: [
+                    "🌍 **Market Overview**: Digital marketing spend expected to grow 15.2% this quarter in your sector",
+                    "🏆 **Competitive Landscape**: 3 new entrants disrupting traditional messaging approaches",
+                    "📊 **Consumer Trends**: 78% prefer brands that show authentic behind-the-scenes content",
+                    "🚀 **Growth Opportunities**: Unexplored potential in micro-influencer partnerships and community building"
+                ]
+            }
+        };
+
+        const research = researchInsights[messageType] || researchInsights.general;
+
+        const researchContent = `
+            <div class="rich-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #8b5cf6;">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="section-title">${research.title}</div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        ${research.insights.map(insight => `
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: var(--content-bg); border-radius: 8px;">
+                                <div style="font-size: 0.875rem; line-height: 1.5;">${insight}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px; border-left: 3px solid var(--accent-blue);">
+                        <div style="font-size: 0.875rem; color: var(--text-primary);">
+                            <strong>💡 Strategic Recommendation:</strong> These insights have been integrated into your campaign strategy to maximize performance and ROI.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        this.addMessage(researchContent, 'agent', 'Deep Research Agent');
     }
 
     addThoughtProcessOption() {
@@ -693,6 +830,45 @@ What would you like to work on next?`
         setTimeout(() => {
             this.addMessage(capability + ' What would you like me to focus on?', 'agent', `${agent.charAt(0).toUpperCase() + agent.slice(1)} Agent`);
         }, 1000);
+    }
+
+    handleAgentQuickAction(agent, action, button) {
+        // Add visual feedback
+        button.style.background = 'var(--accent-blue)';
+        button.style.color = 'white';
+
+        setTimeout(() => {
+            button.style.background = '';
+            button.style.color = '';
+        }, 200);
+
+        const actionMessages = {
+            'market-analysis': 'Analyzing current market trends, competitor positioning, and industry benchmarks...',
+            'competitor-research': 'Researching competitor campaigns, messaging strategies, and market share data...',
+            'performance-analysis': 'Reviewing campaign performance metrics, identifying optimization opportunities...',
+            'optimize-campaign': 'Analyzing performance data and implementing optimization recommendations...',
+            'generate-assets': 'Generating creative assets based on your brand guidelines and best practices...',
+            'ab-test': 'Setting up A/B testing framework for creative variants and messaging...',
+            'segment-audience': 'Creating detailed audience segments based on behavior and demographics...',
+            'lookalike-audience': 'Building lookalike audiences from your highest-value customers...',
+            'design-journey': 'Mapping optimal customer journey with touchpoint optimization...',
+            'optimize-touchpoints': 'Analyzing and optimizing customer touchpoint performance...',
+            'allocate-budget': 'Optimizing budget allocation across channels for maximum ROI...',
+            'channel-strategy': 'Developing multi-channel strategy with platform-specific recommendations...',
+            'past-campaigns': 'Analyzing historical campaign performance and extracting key learnings...',
+            'trend-analysis': 'Identifying emerging trends and opportunities in your market...',
+            'auto-optimize': 'Enabling AI-powered automatic optimization for campaign performance...',
+            'predictions': 'Generating performance predictions and strategic recommendations...'
+        };
+
+        const message = actionMessages[action] || `Executing ${action} for ${agent} agent...`;
+
+        this.addMessage(`⚡ ${message}`, 'agent', `${agent.charAt(0).toUpperCase() + agent.slice(1)} Agent`);
+
+        // Simulate quick action completion
+        setTimeout(() => {
+            this.addMessage(`✅ ${action.replace(/-/g, ' ')} completed successfully. Results are ready for review.`, 'agent', `${agent.charAt(0).toUpperCase() + agent.slice(1)} Agent`);
+        }, 2000);
     }
 
     handleQuickAction(action) {

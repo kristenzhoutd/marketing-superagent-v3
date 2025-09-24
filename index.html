@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketing SuperAgent - AI-Native Marketing Platform</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=34">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -15,21 +15,20 @@
         <main class="main-content">
             <!-- Main SuperAgent Interface -->
             <div class="superagent-interface">
-                <!-- Header Row: Title + Actions -->
-                <div class="superagent-intro">
-                    <div class="agent-avatar">
-                        <div class="avatar-diamond">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                    </div>
-                    <div class="intro-content">
-                        <h1 class="agent-title">Marketing SuperAgent</h1>
-                        <p class="agent-subtitle">One SuperAgent. Every Task. Marketing Made AI-Native.</p>
-                    </div>
-                </div>
-
                 <!-- Content Row: Main Chat Interface -->
                 <div class="conversation-side">
+                    <!-- Header Row: Title + Actions -->
+                    <div class="superagent-intro">
+                        <div class="agent-avatar">
+                            <div class="avatar-diamond">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <div class="intro-content">
+                            <h1 class="agent-title">Marketing SuperAgent</h1>
+                            <p class="agent-subtitle">One SuperAgent. Every Task. Marketing Made AI-Native.</p>
+                        </div>
+                    </div>
                     <!-- Chat Interface -->
                     <div class="chat-interface">
                         <div class="chat-messages" id="chat-messages">
@@ -179,127 +178,138 @@
                     </div>
                 </div>
 
-                <!-- Column 3: Specialist Agents panel -->
-
                 <!-- Right Side: Agent Panel -->
                 <div class="agent-panel-side">
                     <div class="panel-header">
                         <div class="panel-title">
-                            <i class="fas fa-network-wired"></i>
                             <span>Specialist Agents</span>
                         </div>
                         <div class="agents-status">
+                            <div class="status-indicator-dot"></div>
                             <span class="status-text">8 agents ready</span>
-                            <div class="status-indicator active"></div>
                         </div>
                     </div>
 
                     <div class="agents-grid">
                         <div class="agent-card" data-agent="research">
-                            <div class="agent-header">
-                                <div class="agent-icon research">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Deep Research</div>
-                                    <div class="agent-description">Market trends & competitor insights</div>
+                            <div class="agent-icon research">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Deep Research</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Market Analysis</span>
+                                    <span class="capability-tag">Competitor Intel</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="performance">
-                            <div class="agent-header">
-                                <div class="agent-icon performance">
-                                    <i class="fas fa-chart-bar"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Performance</div>
-                                    <div class="agent-description">Analytics & optimization</div>
+                            <div class="agent-icon performance">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Performance</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Analytics</span>
+                                    <span class="capability-tag">Optimization</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="creative">
-                            <div class="agent-header">
-                                <div class="agent-icon creative">
-                                    <i class="fas fa-palette"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Creative</div>
-                                    <div class="agent-description">Asset generation & testing</div>
+                            <div class="agent-icon creative">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Creative</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Asset Gen</span>
+                                    <span class="capability-tag">A/B Testing</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="audience">
-                            <div class="agent-header">
-                                <div class="agent-icon audience">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Audience</div>
-                                    <div class="agent-description">Segmentation & targeting</div>
+                            <div class="agent-icon audience">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Audience</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Segmentation</span>
+                                    <span class="capability-tag">Targeting</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="journey">
-                            <div class="agent-header">
-                                <div class="agent-icon journey">
-                                    <i class="fas fa-route"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Journey</div>
-                                    <div class="agent-description">Channel orchestration</div>
+                            <div class="agent-icon journey">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Journey</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Flows</span>
+                                    <span class="capability-tag">Touchpoints</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="paid-media">
-                            <div class="agent-header">
-                                <div class="agent-icon paid-media">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Paid Media</div>
-                                    <div class="agent-description">Budget allocation & activation</div>
+                            <div class="agent-icon paid-media">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Paid Media</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Budget</span>
+                                    <span class="capability-tag">Channels</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="historical">
-                            <div class="agent-header">
-                                <div class="agent-icon historical">
-                                    <i class="fas fa-history"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">Historical</div>
-                                    <div class="agent-description">Past campaign learnings</div>
+                            <div class="agent-icon historical">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">Historical</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Learnings</span>
+                                    <span class="capability-tag">Trends</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
                         </div>
 
                         <div class="agent-card" data-agent="decisioning">
-                            <div class="agent-header">
-                                <div class="agent-icon decisioning">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <div class="agent-info">
-                                    <div class="agent-name">AI Decisioning</div>
-                                    <div class="agent-description">Continuous optimization</div>
+                            <div class="agent-icon decisioning">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="agent-info">
+                                <div class="agent-name">AI Decisioning</div>
+                                <div class="agent-capabilities">
+                                    <span class="capability-tag">Auto-Optimize</span>
+                                    <span class="capability-tag">Predictions</span>
                                 </div>
                             </div>
-                            <div class="agent-status ready">Ready</div>
+                            <div class="agent-status ready">READY</div>
+                        </div>
+
+                        <div class="agent-card add-custom-agent">
+                            <div class="add-agent-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="add-agent-text">Add Custom Agent</div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>
@@ -343,6 +353,6 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=5"></script>
 </body>
 </html>

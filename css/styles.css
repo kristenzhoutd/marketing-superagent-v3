@@ -619,9 +619,16 @@ body {
     min-height: 100vh;
 }
 
+/* Left Column - Header + Chat */
+.conversation-side {
+    grid-column: 1 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
 /* Header Row - Title + Actions */
 .superagent-intro {
-    grid-column: 1 / 9;
     display: flex;
     align-items: center;
     gap: var(--space-sm);
@@ -630,22 +637,15 @@ body {
     margin-bottom: var(--space-md);
 }
 
-/* Content Row Split - Two Columns */
-.conversation-side {
-    grid-column: 1 / 10;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-}
-
 .agent-panel-side {
-    grid-column: 10 / 13;
+    grid-column: 9 / 13;
     background: white;
-    border: var(--border);
-    border-radius: var(--radius-sm);
     padding: var(--space-md);
-    max-height: calc(100vh - 120px);
+    height: 100vh;
     overflow-y: auto;
+    align-self: start;
+    margin-top: 0;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.03);
 }
 
 /* Compact Header Styling */
@@ -1054,41 +1054,35 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0;
     margin-bottom: 1.5rem;
+    padding-top: 0;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
 .panel-title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 1.125rem;
+    font-size: 16px;
 }
 
 .agents-status {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .status-text {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: var(--text-secondary);
 }
 
-.status-indicator {
-    width: 12px;
-    height: 12px;
+.status-indicator-dot {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: var(--agent-ready);
-}
-
-.status-indicator.active {
-    background: var(--agent-active);
-    animation: pulse 2s infinite;
+    background: #22c55e;
 }
 
 /* Agents Grid */
@@ -1100,41 +1094,39 @@ body {
 }
 
 .agent-card {
-    background: var(--content-bg);
+    background: white;
     border: var(--border);
-    border-radius: var(--radius-sm);
-    padding: var(--space-sm);
+    border-radius: 12px;
+    padding: 16px;
     cursor: pointer;
-    transition: all var(--transition-fast);
-    height: 56px;
+    transition: all 0.2s ease;
+    min-height: 80px;
     display: flex;
     align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .agent-card:hover {
-    background: white;
     border-color: var(--accent-blue);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
 }
 
-.agent-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    flex: 1;
-}
+/* Remove agent-header since we're using horizontal layout now */
 
 .agent-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: var(--radius-sm);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 12px;
+    font-size: 18px;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .agent-icon.research { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
@@ -1148,13 +1140,18 @@ body {
 
 .agent-info {
     flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .agent-name {
     font-weight: 600;
     color: var(--text-primary);
-    font-size: var(--font-base);
+    font-size: 15px;
     line-height: 1.2;
+    margin: 0;
 }
 
 .agent-description {
@@ -1162,20 +1159,98 @@ body {
 }
 
 .agent-status {
-    font-size: var(--label);
-    font-weight: 500;
-    color: var(--agent-ready);
+    font-size: 11px;
+    font-weight: 600;
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .agent-status.ready {
-    color: var(--agent-ready);
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.2);
 }
 
 .agent-status.working {
-    color: var(--agent-working);
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.2);
     animation: pulse 2s infinite;
+}
+
+.agent-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Agent Capabilities */
+.agent-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.capability-tag {
+    background: var(--content-bg);
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Add Custom Agent Card */
+.agent-card.add-custom-agent {
+    border: 2px dashed #d1d5db;
+    background: #f9fafb;
+    justify-content: center;
+    color: #6b7280;
+    min-height: 80px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.agent-card.add-custom-agent:hover {
+    border-color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.02);
+    color: var(--accent-blue);
+}
+
+.add-agent-icon {
+    width: 24px;
+    height: 24px;
+    background: #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.agent-card.add-custom-agent:hover .add-agent-icon {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.add-agent-text {
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
 }
 
 /* Quick Action Chips */
@@ -1272,10 +1347,6 @@ body {
         gap: var(--space-md);
     }
 
-    .superagent-intro {
-        grid-column: 1;
-    }
-
     .conversation-side {
         grid-column: 1;
     }
@@ -1283,8 +1354,7 @@ body {
     .agent-panel-side {
         grid-column: 1;
         max-height: 300px;
-        border-top: var(--border);
-        border-left: none;
+        margin-top: var(--space-md);
     }
 
     .starter-cards {
