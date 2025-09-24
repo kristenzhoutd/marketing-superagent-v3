@@ -625,8 +625,8 @@ What would you like to work on next?`
         suggestionsDiv.style.cssText = `
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: var(--space-xxs);
+            margin-top: var(--space-xs);
         `;
 
         suggestions.forEach(suggestion => {
@@ -634,12 +634,15 @@ What would you like to work on next?`
             suggestionBtn.className = 'suggestion-btn';
             suggestionBtn.style.cssText = `
                 background: var(--content-bg);
-                border: 1px solid var(--border-color);
+                border: var(--border);
                 border-radius: 20px;
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
+                padding: var(--space-xs);
+                font-size: var(--label);
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: all var(--transition-fast);
+                height: 28px;
+                display: flex;
+                align-items: center;
             `;
             suggestionBtn.textContent = suggestion;
             suggestionBtn.addEventListener('click', () => {

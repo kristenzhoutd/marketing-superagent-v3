@@ -21,13 +21,39 @@
     --agent-active: #22c55e;
     --agent-ready: #f59e0b;
     --agent-working: #3b82f6;
+
+    /* Compact Density Mode Typography */
+    --font-base: 14px;
+    --lh-base: 1.35;
+    --h1: 22px;
+    --h2: 16px;
+    --label: 12px;
+
+    /* Compact Spacing Scale (25-30% reduction) */
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 20px;
+    --space-xl: 24px;
+
+    /* Compact Visual Properties */
+    --radius-sm: 8px;
+    --border: 1px solid var(--border-color);
+    --transition-fast: 120ms ease;
+
+    /* Layout Grid */
+    --container-max: 1440px;
+    --grid-columns: 12;
+    --grid-gutter: 16px;
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--content-bg);
     color: var(--text-primary);
-    line-height: 1.5;
+    font-size: var(--font-base);
+    line-height: var(--lh-base);
     overflow-x: hidden;
 }
 
@@ -582,54 +608,63 @@ body {
     border-radius: 50%;
 }
 
-/* SuperAgent Interface - Two Column Layout */
+/* SuperAgent Interface - 12-Column Grid Layout */
 .superagent-interface {
-    display: flex;
-    height: 100vh;
-    max-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-md);
+    min-height: 100vh;
 }
 
+/* Header Row - Title + Actions */
+.superagent-intro {
+    grid-column: 1 / 9;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: var(--border);
+    margin-bottom: var(--space-md);
+}
+
+/* Content Row Split - Two Columns */
 .conversation-side {
-    flex: 1;
+    grid-column: 1 / 10;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    background: var(--content-bg);
+    gap: var(--space-md);
 }
 
 .agent-panel-side {
-    width: 400px;
+    grid-column: 10 / 13;
     background: white;
-    border-left: 1px solid var(--border-color);
-    padding: 2rem;
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    max-height: calc(100vh - 120px);
     overflow-y: auto;
 }
 
-/* SuperAgent Introduction */
-.superagent-intro {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
+/* Compact Header Styling */
 
 .agent-avatar {
     flex-shrink: 0;
 }
 
 .avatar-diamond {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.25rem;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
 }
 
 .intro-content {
@@ -637,69 +672,84 @@ body {
 }
 
 .agent-title {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: var(--h1);
+    font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-xxs);
+    line-height: 1.2;
 }
 
 .agent-subtitle {
-    font-size: 0.95rem;
+    font-size: var(--font-base);
     color: var(--text-secondary);
     margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
+/* View All Suggestions Link */
+.view-all-suggestions {
+    text-align: center;
+    margin-top: var(--space-xs);
+}
+
+.view-all-link {
+    font-size: var(--label);
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-xxs) var(--space-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.view-all-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
 /* Chat Interface */
 .chat-interface {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 160px);
 }
 
 .chat-messages {
     flex: 1;
-    padding: 1.5rem 0;
+    padding: var(--space-sm) 0;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-sm);
 }
 
 .message {
     display: flex;
-    gap: 1rem;
+    gap: var(--space-sm);
     align-items: flex-start;
 }
 
 .message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    font-size: var(--label);
 }
 
 .message.user-message .message-avatar {
     background: linear-gradient(135deg, var(--accent-green), #059669);
     color: white;
-    font-size: 1rem;
 }
 
 .message.agent-message .message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: white;
-    font-size: 1rem;
-    flex-shrink: 0;
 }
 
 .message-content {
@@ -708,11 +758,12 @@ body {
 
 .message-text {
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: var(--lh-base);
     background: white;
-    padding: 1rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: var(--border);
+    font-size: var(--font-base);
 }
 
 /* Starter Suggestions */
@@ -732,53 +783,65 @@ body {
 
 .starter-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
 }
 
 .starter-card {
     background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.25rem;
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-xs);
+    height: 48px;
+    min-height: 48px;
 }
 
 .starter-card:hover {
     border-color: var(--accent-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .starter-icon {
-    font-size: 1.5rem;
+    font-size: 16px;
     flex-shrink: 0;
+    width: 16px;
+    text-align: center;
 }
 
 .starter-text {
-    font-size: 0.9rem;
+    font-size: var(--label);
     color: var(--text-primary);
-    line-height: 1.4;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Chat Input Container */
 .chat-input-container {
     margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    padding-top: var(--space-md);
+    border-top: var(--border);
 }
 
 .input-wrapper {
     position: relative;
     background: white;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1rem;
-    transition: all 0.2s ease;
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    transition: all var(--transition-fast);
+    height: 44px;
+    display: flex;
+    align-items: center;
 }
 
 .input-wrapper:focus-within {
@@ -790,14 +853,14 @@ body {
     width: 100%;
     border: none;
     outline: none;
-    font-size: 1rem;
+    font-size: var(--font-base);
     color: var(--text-primary);
     background: transparent;
     font-family: inherit;
     resize: none;
-    min-height: 20px;
-    padding-left: 120px;
-    padding-right: 50px;
+    height: 20px;
+    padding-left: 100px;
+    padding-right: 44px;
 }
 
 #chat-input::placeholder {
@@ -806,29 +869,29 @@ body {
 
 .chat-menu-icons {
     position: absolute;
-    left: 0.75rem;
+    left: var(--space-sm);
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-xxs);
     align-items: center;
-    padding-right: 0.75rem;
-    border-right: 1px solid var(--border-color);
+    padding-right: var(--space-xs);
+    border-right: var(--border);
 }
 
 .chat-menu-btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background: transparent;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 .chat-menu-btn:hover {
@@ -845,22 +908,22 @@ body {
 
 .send-btn {
     position: absolute;
-    right: 0.75rem;
+    right: var(--space-xs);
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background: var(--accent-blue);
     border: none;
     border-radius: 50%;
     color: white;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    font-size: 14px;
+    box-shadow: 0 1px 4px rgba(59, 130, 246, 0.2);
 }
 
 .send-btn:hover {
@@ -1032,17 +1095,20 @@ body {
 .agents-grid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
 }
 
 .agent-card {
     background: var(--content-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1rem;
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
+    height: 56px;
+    display: flex;
+    align-items: center;
 }
 
 .agent-card:hover {
@@ -1055,19 +1121,19 @@ body {
 .agent-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    gap: var(--space-xs);
+    flex: 1;
 }
 
 .agent-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1rem;
+    font-size: 12px;
     flex-shrink: 0;
 }
 
@@ -1087,18 +1153,16 @@ body {
 .agent-name {
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
+    font-size: var(--font-base);
+    line-height: 1.2;
 }
 
 .agent-description {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.3;
+    display: none; /* Hidden by default, shown on hover tooltip */
 }
 
 .agent-status {
-    font-size: 0.75rem;
+    font-size: var(--label);
     font-weight: 500;
     color: var(--agent-ready);
     text-transform: uppercase;
@@ -1128,25 +1192,30 @@ body {
 }
 
 .action-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--space-xs);
 }
 
 .action-chip {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.375rem;
+    justify-content: center;
+    gap: var(--space-xxs);
     background: var(--content-bg);
-    border: 1px solid var(--border-color);
+    border: var(--border);
     border-radius: 20px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
+    padding: var(--space-xs);
+    height: 28px;
+    font-size: var(--label);
     font-weight: 500;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .action-chip:hover {
@@ -1171,6 +1240,17 @@ body {
     font-weight: 500;
 }
 
+.action-chip.more-tools {
+    border: 2px dashed var(--border-color);
+    color: var(--text-muted);
+}
+
+.action-chip.more-tools:hover {
+    border-color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.05);
+    color: var(--accent-blue);
+}
+
 /* Hide Old Elements - Using New Conversational Design */
 .campaign-creation-center,
 .chat-container,
@@ -1180,22 +1260,41 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1440px) {
+    :root {
+        --container-max: 1280px;
+    }
+}
+
+@media (max-width: 1280px) {
     .superagent-interface {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .superagent-intro {
+        grid-column: 1;
+    }
+
+    .conversation-side {
+        grid-column: 1;
     }
 
     .agent-panel-side {
-        width: 100%;
+        grid-column: 1;
+        max-height: 300px;
+        border-top: var(--border);
         border-left: none;
-        border-top: 1px solid var(--border-color);
-        max-height: 50vh;
     }
 
     .starter-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .action-chips {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
     }
 }
 
@@ -1270,20 +1369,21 @@ body {
 /* Agent Progress Display */
 .agent-progress-display {
     background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    margin: var(--space-xs) 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .progress-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
     font-weight: 600;
     color: var(--text-primary);
+    font-size: var(--font-base);
 }
 
 .progress-header i {
@@ -1299,17 +1399,18 @@ body {
 .agent-progress-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-xxs);
 }
 
 .agent-progress-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    gap: var(--space-xs);
+    padding: var(--space-xs);
     background: var(--content-bg);
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    min-height: 40px;
 }
 
 .agent-progress-item.completed {
@@ -1323,14 +1424,14 @@ body {
 }
 
 .agent-progress-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 0.875rem;
+    font-size: var(--label);
     flex-shrink: 0;
 }
 
@@ -1341,24 +1442,25 @@ body {
 .agent-progress-name {
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 0.875rem;
-    margin-bottom: 0.25rem;
+    font-size: var(--font-base);
+    margin-bottom: var(--space-xxs);
+    line-height: 1.2;
 }
 
 .agent-progress-task {
-    font-size: 0.75rem;
+    font-size: var(--label);
     color: var(--text-secondary);
-    line-height: 1.3;
+    line-height: var(--lh-base);
 }
 
 .agent-status-indicator {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
+    font-size: 10px;
 }
 
 .agent-status-indicator.pending {
@@ -1445,76 +1547,77 @@ body {
 
 /* Rich Content Display Components */
 .rich-content {
-    margin: 1rem 0;
+    margin: var(--space-xs) 0;
 }
 
 .content-section {
     background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .section-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
+    padding-bottom: var(--space-xs);
+    border-bottom: var(--border);
 }
 
 .section-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 0.875rem;
+    font-size: var(--label);
 }
 
 .section-title {
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: var(--font-base);
 }
 
 /* Metrics Grid */
 .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-xs);
+    margin: var(--space-xs) 0;
 }
 
 .metric-card {
     background: var(--content-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs);
     text-align: center;
 }
 
 .metric-value {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--accent-blue);
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-xxs);
+    line-height: 1.2;
 }
 
 .metric-label {
-    font-size: 0.875rem;
+    font-size: var(--label);
     color: var(--text-secondary);
     font-weight: 500;
 }
 
 .metric-change {
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
+    font-size: 10px;
+    margin-top: var(--space-xxs);
 }
 
 .metric-change.positive {
@@ -1561,22 +1664,23 @@ body {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.875rem;
+    margin: var(--space-xs) 0;
+    font-size: var(--label);
 }
 
 .data-table th {
     background: var(--content-bg);
     color: var(--text-primary);
     font-weight: 600;
-    padding: 0.75rem;
+    padding: var(--space-xs);
     text-align: left;
     border-bottom: 2px solid var(--border-color);
+    font-size: var(--label);
 }
 
 .data-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: var(--space-xs);
+    border-bottom: var(--border);
     color: var(--text-secondary);
 }
 

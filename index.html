@@ -15,21 +15,21 @@
         <main class="main-content">
             <!-- Main SuperAgent Interface -->
             <div class="superagent-interface">
-                <!-- Left Side: Conversational Interface -->
-                <div class="conversation-side">
-                    <!-- SuperAgent Introduction -->
-                    <div class="superagent-intro">
-                        <div class="agent-avatar">
-                            <div class="avatar-diamond">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                        </div>
-                        <div class="intro-content">
-                            <h1 class="agent-title">Marketing SuperAgent</h1>
-                            <p class="agent-subtitle">One SuperAgent. Every Task. Marketing Made AI-Native.</p>
+                <!-- Header Row: Title + Actions -->
+                <div class="superagent-intro">
+                    <div class="agent-avatar">
+                        <div class="avatar-diamond">
+                            <i class="fas fa-robot"></i>
                         </div>
                     </div>
+                    <div class="intro-content">
+                        <h1 class="agent-title">Marketing SuperAgent</h1>
+                        <p class="agent-subtitle">One SuperAgent. Every Task. Marketing Made AI-Native.</p>
+                    </div>
+                </div>
 
+                <!-- Content Row: Main Chat Interface -->
+                <div class="conversation-side">
                     <!-- Chat Interface -->
                     <div class="chat-interface">
                         <div class="chat-messages" id="chat-messages">
@@ -55,23 +55,30 @@
                             <div class="starter-cards">
                                 <div class="starter-card" data-prompt="Create a campaign brief for our Black Friday sale">
                                     <div class="starter-icon">📝</div>
-                                    <div class="starter-text">"Create a campaign brief for our Black Friday sale"</div>
+                                    <div class="starter-text">Campaign brief for Black Friday sale</div>
                                 </div>
                                 <div class="starter-card" data-prompt="Generate 3 Instagram ads for holiday promotion">
                                     <div class="starter-icon">🎨</div>
-                                    <div class="starter-text">"Generate 3 Instagram ads for holiday promotion"</div>
+                                    <div class="starter-text">Generate Instagram ads for holidays</div>
                                 </div>
                                 <div class="starter-card" data-prompt="Build a 2-week email campaign journey for cart abandoners">
                                     <div class="starter-icon">🗺️</div>
-                                    <div class="starter-text">"Build a 2-week email campaign journey for cart abandoners"</div>
+                                    <div class="starter-text">Email campaign for cart abandoners</div>
                                 </div>
                                 <div class="starter-card" data-prompt="How is my Black Friday campaign performing? Should I change budgets?">
                                     <div class="starter-icon">📊</div>
-                                    <div class="starter-text">"How is my Black Friday campaign performing?"</div>
+                                    <div class="starter-text">Campaign performance analysis</div>
+                                </div>
+                                <div class="starter-card" data-prompt="Design audience segments for Gen Z customers">
+                                    <div class="starter-icon">👥</div>
+                                    <div class="starter-text">Audience segmentation for Gen Z</div>
+                                </div>
+                                <div class="starter-card" data-prompt="Optimize budget allocation across channels">
+                                    <div class="starter-icon">💰</div>
+                                    <div class="starter-text">Budget optimization strategy</div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- Chat Input -->
                         <div class="chat-input-container">
                             <div class="input-wrapper">
@@ -103,43 +110,43 @@
                                 <div class="action-chips">
                                     <button class="action-chip" data-action="templates">
                                         <i class="fas fa-layer-group"></i>
-                                        <span>Campaign Templates</span>
+                                        <span>Templates</span>
                                     </button>
                                     <button class="action-chip" data-action="audience">
                                         <i class="fas fa-users-cog"></i>
-                                        <span>Audience Builder</span>
+                                        <span>Audience</span>
                                     </button>
                                     <button class="action-chip" data-action="creative">
                                         <i class="fas fa-palette"></i>
-                                        <span>Creative Studio</span>
+                                        <span>Creative</span>
                                     </button>
                                     <button class="action-chip" data-action="budget">
                                         <i class="fas fa-calculator"></i>
-                                        <span>Budget Planner</span>
+                                        <span>Budget</span>
                                     </button>
                                     <button class="action-chip" data-action="performance">
                                         <i class="fas fa-chart-line"></i>
-                                        <span>Performance Tracker</span>
+                                        <span>Performance</span>
                                     </button>
                                     <button class="action-chip" data-action="testing">
                                         <i class="fas fa-flask"></i>
-                                        <span>A/B Testing</span>
+                                        <span>A/B Test</span>
                                     </button>
                                     <button class="action-chip" data-action="research">
                                         <i class="fas fa-search-plus"></i>
-                                        <span>Market Research</span>
+                                        <span>Research</span>
                                     </button>
                                     <button class="action-chip" data-action="automation">
                                         <i class="fas fa-robot"></i>
-                                        <span>Campaign Automation</span>
+                                        <span>Automation</span>
                                     </button>
                                     <button class="action-chip" data-action="analytics">
                                         <i class="fas fa-chart-pie"></i>
-                                        <span>Advanced Analytics</span>
+                                        <span>Analytics</span>
                                     </button>
-                                    <button class="action-chip" data-action="personalization">
-                                        <i class="fas fa-user-tag"></i>
-                                        <span>Personalization</span>
+                                    <button class="action-chip more-tools" data-action="more">
+                                        <i class="fas fa-chevron-down"></i>
+                                        <span>More tools</span>
                                     </button>
                                 </div>
                             </div>
@@ -171,6 +178,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Column 3: Specialist Agents panel -->
 
                 <!-- Right Side: Agent Panel -->
                 <div class="agent-panel-side">
