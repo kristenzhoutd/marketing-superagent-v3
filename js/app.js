@@ -132,7 +132,11 @@ class MarketingSuperAgentV3 {
         } else {
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <i class="fas fa-robot"></i>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L20 6L20 18L12 23L4 18L4 6L12 1Z" fill="#4285f4"/>
+                        <path d="M12 5L17 8L17 16L12 19L7 16L7 8L12 5Z" fill="white"/>
+                        <circle cx="12" cy="12" r="2.5" fill="#4285f4"/>
+                    </svg>
                 </div>
                 <div class="message-content">
                     <div class="message-text">${content}</div>
