@@ -132,17 +132,7 @@ class MarketingSuperAgentV3 {
         } else {
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="blueGradientSmall" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#6BA3F5;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4285F4;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M14 2L24 8L24 20L14 26L4 20L4 8L14 2Z" fill="url(#blueGradientSmall)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
-                        <path d="M14 7L19 10L19 18L14 21L9 18L9 10L14 7Z" fill="white" fill-opacity="0.9"/>
-                        <path d="M14 11L16.5 12.5L16.5 15.5L14 17L11.5 15.5L11.5 12.5L14 11Z" fill="#4285F4"/>
-                    </svg>
+                    <i class="fas fa-robot"></i>
                 </div>
                 <div class="message-content">
                     <div class="message-text">${content}</div>
