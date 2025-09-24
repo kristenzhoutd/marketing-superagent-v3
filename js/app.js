@@ -132,10 +132,16 @@ class MarketingSuperAgentV3 {
         } else {
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 1L20 6L20 18L12 23L4 18L4 6L12 1Z" fill="#4285f4"/>
-                        <path d="M12 5L17 8L17 16L12 19L7 16L7 8L12 5Z" fill="white"/>
-                        <circle cx="12" cy="12" r="2.5" fill="#4285f4"/>
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="blueGradientSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6BA3F5;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4285F4;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M14 2L24 8L24 20L14 26L4 20L4 8L14 2Z" fill="url(#blueGradientSmall)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                        <path d="M14 7L19 10L19 18L14 21L9 18L9 10L14 7Z" fill="white" fill-opacity="0.9"/>
+                        <path d="M14 11L16.5 12.5L16.5 15.5L14 17L11.5 15.5L11.5 12.5L14 11Z" fill="#4285F4"/>
                     </svg>
                 </div>
                 <div class="message-content">
