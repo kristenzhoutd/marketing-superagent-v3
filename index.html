@@ -85,9 +85,94 @@
                                        id="chat-input"
                                        placeholder="Tell me what you'd like to create or optimize..."
                                        autocomplete="off">
+                                <div class="chat-menu-icons">
+                                    <button id="quick-launch-toggle" class="chat-menu-btn" title="Quick Launch">
+                                        <i class="fas fa-bolt"></i>
+                                    </button>
+                                    <button id="ai-suggestions-toggle" class="chat-menu-btn" title="AI Campaign Suggestions">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </button>
+                                </div>
                                 <button id="send-button" class="send-btn">
                                     <i class="fas fa-paper-plane"></i>
                                 </button>
+                            </div>
+
+                            <!-- Quick Launch Chips - Shown by default -->
+                            <div class="quick-launch-chips" id="quick-launch-chips">
+                                <div class="chips-header">
+                                    <span>Quick Launch</span>
+                                    <button class="chips-close" id="chips-close">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="action-chips">
+                                    <button class="action-chip" data-action="templates">
+                                        <i class="fas fa-layer-group"></i>
+                                        <span>Campaign Templates</span>
+                                    </button>
+                                    <button class="action-chip" data-action="audience">
+                                        <i class="fas fa-users-cog"></i>
+                                        <span>Audience Builder</span>
+                                    </button>
+                                    <button class="action-chip" data-action="creative">
+                                        <i class="fas fa-palette"></i>
+                                        <span>Creative Studio</span>
+                                    </button>
+                                    <button class="action-chip" data-action="budget">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Budget Planner</span>
+                                    </button>
+                                    <button class="action-chip" data-action="performance">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Performance Tracker</span>
+                                    </button>
+                                    <button class="action-chip" data-action="testing">
+                                        <i class="fas fa-flask"></i>
+                                        <span>A/B Testing</span>
+                                    </button>
+                                    <button class="action-chip" data-action="research">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>Market Research</span>
+                                    </button>
+                                    <button class="action-chip" data-action="automation">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Campaign Automation</span>
+                                    </button>
+                                    <button class="action-chip" data-action="analytics">
+                                        <i class="fas fa-chart-pie"></i>
+                                        <span>Advanced Analytics</span>
+                                    </button>
+                                    <button class="action-chip" data-action="personalization">
+                                        <i class="fas fa-user-tag"></i>
+                                        <span>Personalization</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- AI Campaign Suggestions -->
+                            <div class="ai-campaign-suggestions" id="ai-campaign-suggestions" style="display: none;">
+                                <div class="suggestions-header">
+                                    <span>AI Campaign Suggestions</span>
+                                </div>
+                                <div class="suggestion-cards">
+                                    <div class="suggestion-card" data-category="brand-awareness" data-prompt="Create a brand awareness campaign for our new product launch targeting tech enthusiasts with a $50K budget">
+                                        <div class="suggestion-category">BRAND AWARENESS</div>
+                                        <div class="suggestion-text">Create a brand awareness campaign for our new product launch targeting tech enthusiasts with a $50K budget</div>
+                                    </div>
+                                    <div class="suggestion-card" data-category="web-traffic" data-prompt="I need to drive website traffic for our Black Friday sale, targeting existing customers with retargeting ads">
+                                        <div class="suggestion-category">WEB TRAFFIC</div>
+                                        <div class="suggestion-text">I need to drive website traffic for our Black Friday sale, targeting existing customers with retargeting ads</div>
+                                    </div>
+                                    <div class="suggestion-card" data-category="generate-leads" data-prompt="Generate leads for our B2B SaaS product targeting startups and small businesses in the US">
+                                        <div class="suggestion-category">GENERATE LEADS</div>
+                                        <div class="suggestion-text">Generate leads for our B2B SaaS product targeting startups and small businesses in the US</div>
+                                    </div>
+                                    <div class="suggestion-card" data-category="sales-conversions" data-prompt="Launch a social media campaign to increase app downloads among Gen Z users">
+                                        <div class="suggestion-category">SALES & CONVERSIONS</div>
+                                        <div class="suggestion-text">Launch a social media campaign to increase app downloads among Gen Z users</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,28 +297,6 @@
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
-                    <div class="quick-actions">
-                        <div class="actions-title">Quick Actions</div>
-                        <div class="action-buttons">
-                            <button class="action-btn" data-action="brief">
-                                <i class="fas fa-file-alt"></i>
-                                Campaign Brief
-                            </button>
-                            <button class="action-btn" data-action="creative">
-                                <i class="fas fa-image"></i>
-                                Generate Creative
-                            </button>
-                            <button class="action-btn" data-action="journey">
-                                <i class="fas fa-route"></i>
-                                Design Journey
-                            </button>
-                            <button class="action-btn" data-action="optimize">
-                                <i class="fas fa-rocket"></i>
-                                Optimize Campaign
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>

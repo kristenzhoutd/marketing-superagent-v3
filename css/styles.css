@@ -811,11 +811,51 @@ body {
     font-family: inherit;
     resize: none;
     min-height: 20px;
+    padding-left: 120px;
     padding-right: 50px;
 }
 
 #chat-input::placeholder {
     color: var(--text-muted);
+}
+
+.chat-menu-icons {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.chat-menu-btn {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.chat-menu-btn:hover {
+    background: var(--content-bg);
+    color: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+.chat-menu-btn.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .send-btn {
@@ -827,18 +867,138 @@ body {
     height: 40px;
     background: var(--accent-blue);
     border: none;
-    border-radius: 8px;
+    border-radius: 50%;
     color: white;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 .send-btn:hover {
     background: #2563eb;
-    transform: translateY(-50%) translateY(-1px);
+    transform: translateY(-50%) translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+.send-btn:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: translateY(-50%);
+    box-shadow: none;
+}
+
+/* Quick Launch Chips in Chat */
+.quick-launch-chips {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-out;
+}
+
+.chips-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chips-header span {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.chips-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.chips-close:hover {
+    background: var(--content-bg);
+    color: var(--text-primary);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* AI Campaign Suggestions */
+.ai-campaign-suggestions {
+    margin-top: 1.5rem;
+}
+
+.ai-campaign-suggestions .suggestions-header {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.suggestion-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.suggestion-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.suggestion-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+}
+
+.suggestion-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.suggestion-text {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    flex: 1;
+}
+
+/* Responsive for suggestion cards */
+@media (max-width: 768px) {
+    .suggestion-cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Agent Panel Side */
@@ -969,7 +1129,7 @@ body {
     animation: pulse 2s infinite;
 }
 
-/* Quick Actions */
+/* Quick Action Chips */
 .quick-actions {
     border-top: 1px solid var(--border-color);
     padding-top: 1.5rem;
@@ -982,43 +1142,48 @@ body {
     font-size: 0.95rem;
 }
 
-.action-buttons {
+.action-chips {
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-.action-btn {
-    display: flex;
+.action-chip {
+    display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    background: white;
+    gap: 0.375rem;
+    background: var(--content-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 0.875rem;
-    font-size: 0.875rem;
+    border-radius: 20px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
-    text-align: left;
-    width: 100%;
+    white-space: nowrap;
 }
 
-.action-btn:hover {
+.action-chip:hover {
     background: var(--accent-blue);
     color: white;
     border-color: var(--accent-blue);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
 }
 
-.action-btn i {
+.action-chip i {
     color: var(--accent-blue);
     transition: color 0.2s ease;
+    font-size: 0.75rem;
 }
 
-.action-btn:hover i {
+.action-chip:hover i {
     color: white;
+}
+
+.action-chip span {
+    font-weight: 500;
 }
 
 /* Hide Old Elements - Using New Conversational Design */

@@ -11,6 +11,7 @@ class MarketingSuperAgentV3 {
         console.log('Marketing SuperAgent v3 initialized');
         this.setupEventListeners();
         this.setupSuggestedActions();
+        this.initializeQuickLaunch();
     }
 
     setupEventListeners() {
@@ -36,6 +37,29 @@ class MarketingSuperAgentV3 {
                     e.preventDefault();
                     sendMessage();
                 }
+            });
+        }
+
+        // Chat menu buttons
+        const quickLaunchToggle = document.getElementById('quick-launch-toggle');
+        const aiSuggestionsToggle = document.getElementById('ai-suggestions-toggle');
+        const chipsClose = document.getElementById('chips-close');
+
+        if (quickLaunchToggle) {
+            quickLaunchToggle.addEventListener('click', () => {
+                this.toggleQuickLaunch();
+            });
+        }
+
+        if (aiSuggestionsToggle) {
+            aiSuggestionsToggle.addEventListener('click', () => {
+                this.toggleAISuggestions();
+            });
+        }
+
+        if (chipsClose) {
+            chipsClose.addEventListener('click', () => {
+                this.hideQuickLaunch();
             });
         }
 
@@ -87,13 +111,24 @@ class MarketingSuperAgentV3 {
             });
         });
 
-        // Quick action buttons
-        const actionButtons = document.querySelectorAll('.action-btn');
-        actionButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const action = button.dataset.action;
+        // Quick action chips
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.action-chip')) {
+                const chip = e.target.closest('.action-chip');
+                const action = chip.dataset.action;
                 this.handleQuickAction(action);
-            });
+                this.hideQuickLaunch();
+            }
+        });
+
+        // AI Campaign suggestion cards
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.suggestion-card')) {
+                const card = e.target.closest('.suggestion-card');
+                const prompt = card.dataset.prompt;
+                this.handleUserMessage(prompt);
+                this.hideAICampaignSuggestions();
+            }
         });
     }
 
@@ -101,8 +136,9 @@ class MarketingSuperAgentV3 {
         // Add user message to chat
         this.addMessage(message, 'user');
 
-        // Hide starter suggestions after first interaction
+        // Hide starter suggestions and AI suggestions after first interaction
         this.hideStarterSuggestions();
+        this.hideAICampaignSuggestions();
 
         // Route message to appropriate agents
         setTimeout(() => {
@@ -639,10 +675,16 @@ What would you like to work on next?`
 
     handleQuickAction(action) {
         const actionPrompts = {
-            'brief': 'Create a comprehensive campaign brief',
-            'creative': 'Generate creative assets for my campaign',
-            'journey': 'Design a customer journey for my campaign',
-            'optimize': 'Optimize my existing campaign performance'
+            'templates': 'Show me campaign templates for different industries and goals',
+            'audience': 'Help me build detailed audience segments for my campaign',
+            'creative': 'Generate creative assets and A/B testing variants for my campaign',
+            'budget': 'Create an optimized budget plan across all marketing channels',
+            'performance': 'Analyze my current campaign performance and provide optimization recommendations',
+            'testing': 'Set up A/B testing framework for my campaign elements',
+            'research': 'Conduct market research and competitor analysis for my industry',
+            'automation': 'Design marketing automation workflows and triggered campaigns',
+            'analytics': 'Create advanced analytics dashboard with custom KPIs and attribution modeling',
+            'personalization': 'Build personalized customer experiences and dynamic content strategies'
         };
 
         const prompt = actionPrompts[action] || `Help me with ${action}`;
@@ -1704,6 +1746,70 @@ What would you like to work on next?`
 
     scheduleAsset(assetId) {
         this.addMessage(`📅 Opening campaign scheduler for ${assetId} concept... You can set launch dates, budget allocation, and A/B testing parameters in the campaign manager.`, 'agent');
+    }
+
+    toggleQuickLaunch() {
+        const quickLaunchChips = document.getElementById('quick-launch-chips');
+        const quickLaunchToggle = document.getElementById('quick-launch-toggle');
+
+        if (quickLaunchChips.style.display === 'none' || quickLaunchChips.style.display === '') {
+            this.showQuickLaunch();
+        } else {
+            this.hideQuickLaunch();
+        }
+    }
+
+    showQuickLaunch() {
+        const quickLaunchChips = document.getElementById('quick-launch-chips');
+        const quickLaunchToggle = document.getElementById('quick-launch-toggle');
+
+        quickLaunchChips.style.display = 'block';
+        quickLaunchToggle.classList.add('active');
+    }
+
+    hideQuickLaunch() {
+        const quickLaunchChips = document.getElementById('quick-launch-chips');
+        const quickLaunchToggle = document.getElementById('quick-launch-toggle');
+
+        quickLaunchChips.style.display = 'none';
+        quickLaunchToggle.classList.remove('active');
+    }
+
+    initializeQuickLaunch() {
+        // Set the quick launch toggle to active state since chips are showing by default
+        // AI suggestions are hidden by default, so their toggle remains inactive
+        const quickLaunchToggle = document.getElementById('quick-launch-toggle');
+
+        if (quickLaunchToggle) {
+            quickLaunchToggle.classList.add('active');
+        }
+    }
+
+    hideAICampaignSuggestions() {
+        const suggestions = document.getElementById('ai-campaign-suggestions');
+        if (suggestions) {
+            suggestions.style.display = 'none';
+        }
+    }
+
+    toggleAISuggestions() {
+        const suggestions = document.getElementById('ai-campaign-suggestions');
+        const aiSuggestionsToggle = document.getElementById('ai-suggestions-toggle');
+
+        if (suggestions.style.display === 'none' || suggestions.style.display === '') {
+            this.showAISuggestions();
+        } else {
+            this.hideAICampaignSuggestions();
+            aiSuggestionsToggle.classList.remove('active');
+        }
+    }
+
+    showAISuggestions() {
+        const suggestions = document.getElementById('ai-campaign-suggestions');
+        const aiSuggestionsToggle = document.getElementById('ai-suggestions-toggle');
+
+        suggestions.style.display = 'block';
+        aiSuggestionsToggle.classList.add('active');
     }
 }
 
