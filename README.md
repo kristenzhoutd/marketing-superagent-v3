@@ -1,6 +1,6 @@
 # Marketing SuperAgent v3
 
-A fresh start for the Marketing SuperAgent project.
+One SuperAgent. Every Task. Marketing Made AI-Native.
 
 ## Project Structure
 
