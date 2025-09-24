@@ -335,10 +335,12 @@ class MarketingSuperAgentV3 {
             <div class="agent-progress-list">
         `;
 
+        const timestamp = Date.now();
         activeAgents.forEach((agentName, index) => {
             const agent = agentDetails[agentName];
+            const itemId = `agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${timestamp}`;
             progressHTML += `
-                <div class="agent-progress-item" id="agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}">
+                <div class="agent-progress-item" id="${itemId}">
                     <div class="agent-progress-icon" style="background: ${agent.color}">
                         <i class="${agent.icon}"></i>
                     </div>
@@ -365,10 +367,18 @@ class MarketingSuperAgentV3 {
 
     simulateAgentProgress(agents, progressId) {
         const progressDiv = document.getElementById(progressId);
-        if (!progressDiv) return;
+        if (!progressDiv) {
+            console.error(`Progress div not found: ${progressId}`);
+            return;
+        }
+
+        // Extract timestamp from progressId more reliably
+        const timestamp = progressId.replace('progress-', '');
+        console.log(`Starting simulation for ${agents.length} agents with timestamp: ${timestamp}`);
 
         agents.forEach((agentName, index) => {
-            const itemId = `agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${progressId.split('-')[1]}`;
+            const itemId = `agent-${agentName.replace(/\s+/g, '-').toLowerCase()}-${timestamp}`;
+            console.log(`Setting up progress for ${agentName} with ID: ${itemId}`);
 
             // Start working
             setTimeout(() => {
@@ -376,8 +386,10 @@ class MarketingSuperAgentV3 {
                 if (item) {
                     item.classList.add('working');
                     const indicator = item.querySelector('.agent-status-indicator');
-                    indicator.className = 'agent-status-indicator working';
-                    indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                    if (indicator) {
+                        indicator.className = 'agent-status-indicator working';
+                        indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                    }
                 }
             }, (index + 1) * 500);
 
@@ -388,11 +400,18 @@ class MarketingSuperAgentV3 {
                     item.classList.remove('working');
                     item.classList.add('completed');
                     const indicator = item.querySelector('.agent-status-indicator');
-                    indicator.className = 'agent-status-indicator completed';
-                    indicator.innerHTML = '<i class="fas fa-check"></i>';
+                    if (indicator) {
+                        indicator.className = 'agent-status-indicator completed';
+                        indicator.innerHTML = '<i class="fas fa-check"></i>';
+                        console.log(`Agent ${agentName} completed successfully`);
+                    }
 
                     const taskDiv = item.querySelector('.agent-progress-task');
-                    taskDiv.textContent = 'Analysis completed successfully';
+                    if (taskDiv) {
+                        taskDiv.textContent = 'Analysis completed successfully';
+                    }
+                } else {
+                    console.error(`Could not find item with ID: ${itemId}`);
                 }
             }, (index + 1) * 1000 + 2000);
         });
